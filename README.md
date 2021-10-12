@@ -1,13 +1,21 @@
-# Your GitHub Learning Lab Repository for Introducing GitHub
 
-Welcome to **your** repository for your GitHub Learning Lab course. This repository will be used during the different activities that I will be guiding you through. See a word you don't understand? We've included an emoji 📖 next to some key terms. Click on it to see its definition.
+import re
 
-Oh! I haven't introduced myself...
+def passwordChecker(password):
+    tooShort = "Your password is too short, it must be at least 10 characters"
+    noNum = "Your password does not have a number. Please add at least one number."
+    notMixed = "Your password is not mixed case. Please choose a password with mixed case."
+    noSpec = "Your password does not have a valid special character. Please add at least one valid special character."
+    if len(password) >= 10 and re.search(r'[0-9]', password) and re.search(r'[A-Z]', password) \
+            and re.search(r'[a-z]', password) and re.search(r'[$!@%^&*#]', password):
+        print("Your password is valid")
+    elif len(password) < 10:
+        print(tooShort, "\n" +str(noNum), "\n" + str(notMixed), "\n" + str(noSpec))
+    elif len(password) >= 10 and re.search(r'[A-Z]', password) and re.search(r'[a-z]', password):
+        print(noNum, "\n" + str(noSpec))
+    elif len(password) >= 10 and re.search(r'[$!@%^&*#]', password):
+        print(notMixed, "\n" + str(noNum))
 
-I'm the GitHub Learning Lab bot and I'm here to help guide you in your journey to learn and master the various topics covered in this course. I will be using Issue and Pull Request comments to communicate with you. In fact, I already added an issue for you to check out.
 
-![issue tab](https://lab.github.com/public/images/issue_tab.png)
-
-I'll meet you over there, can't wait to get started!
-
-This course is using the :sparkles: open source project [reveal.js](https://github.com/hakimel/reveal.js/). In some cases we’ve made changes to the history so it would behave during class, so head to the original project repo to learn more about the cool people behind this project.
+password = str(input("Enter a password: "))
+passwordChecker(password)
